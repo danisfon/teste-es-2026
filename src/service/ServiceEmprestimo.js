@@ -12,6 +12,11 @@ class ServicoEmprestimo {
             return false;
         }
 
+        if(usuario.multaPendente > constants.LIMITE_MULTA) {
+            return false;
+        }
+        
+
         return true;
     }
 }
