@@ -16,7 +16,6 @@ class ServicoEmprestimo {
             return false;
         }
         
-
         return true;
     }
 
