@@ -25,7 +25,6 @@ class ServicoEmprestimo {
     static validarLivro(livro) {
         if(!livro.disponivel) {
             throw new Error(mensagens.LIVRO_INDISPONIVEL);
-            ;
         }
 
         return true;
