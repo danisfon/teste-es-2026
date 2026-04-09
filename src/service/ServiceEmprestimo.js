@@ -1,3 +1,6 @@
+const mensagens = require("../util/mensagens");
+const constants = require("../util/constants");
+
 class ServicoEmprestimo {
     static autorizarEmprestimo(usuario) {
         return this.validarUsuario(usuario) && this.validarLivro(livro)
@@ -21,7 +24,8 @@ class ServicoEmprestimo {
 
     static validarLivro(livro) {
         if(!livro.disponivel) {
-            return false;
+            throw new Error(mensagens.LIVRO_INDISPONIVEL);
+            ;
         }
 
         return true;
