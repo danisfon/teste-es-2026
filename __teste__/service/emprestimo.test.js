@@ -2,16 +2,62 @@ const Usuario = require("../../src/model/Usuario");
 const Livro = require("../../src/model/Livro");
 const ServicoEmprestimo = require("../../src/service/ServiceEmprestimo");
 
-test('Testa usuario e livro valido', () => {
+describe("Emprestimo", ()=> {
 
-// Arrange
-const usuario = new Usuario({id: 1, nome: "dani", ativo: true, emprestimosAtivos: 2, multaPendente: 20});
-const livro = new Livro({id: 1, titulo: "Teste ES", disponivel: true});
+    test('Testa usuario e livro valido', () => {
 
-// Act
-const saida = ServicoEmprestimo.autorizarEmprestimo(usuario, livro)
+    // Arrange
+    const usuario = new Usuario({id: 1, nome: "dani", ativo: true, emprestimosAtivos: 2, multaPendente: 20});
+    const livro = new Livro({id: 1, titulo: "Teste ES", disponivel: true});
 
-// Assert
-expect(true).toBe(saida);
+    // Act
+    const saida = ServicoEmprestimo.autorizarEmprestimo(usuario, livro)
 
-})
+    // Assert
+    expect(true).toBe(saida);
+
+    });
+
+
+    test('Testa usuario valido e livro invalido', () => {
+
+    // Arrange
+    const usuario = new Usuario({id: 1, nome: "dani", ativo: true, emprestimosAtivos: 2, multaPendente: 20});
+    const livro = new Livro({id: 1, titulo: "Teste ES", disponivel: false});
+
+    // Act
+    const saida = ServicoEmprestimo.autorizarEmprestimo(usuario, livro)
+
+    // Assert
+    expect(false).toBe(saida);
+
+    });
+
+    test('Testa usuario invalido (ativo) e livro valido', () => {
+
+    // Arrange
+    const usuario = new Usuario({id: 1, nome: "dani", ativo: false, emprestimosAtivos: 2, multaPendente: 20});
+    const livro = new Livro({id: 1, titulo: "Teste ES", disponivel: true});
+
+    // Act
+    const saida = ServicoEmprestimo.autorizarEmprestimo(usuario, livro)
+
+    // Assert
+    expect(false).toBe(saida);
+
+    });
+
+    test('Testa usuario invalido (emprestimo) e livro valido', () => {
+
+    // Arrange
+    const usuario = new Usuario({id: 1, nome: "dani", ativo: true, emprestimosAtivos: constants.USUARIO_LIMITE_EMPRESTIMOS + 1, multaPendente: 20});
+    const livro = new Livro({id: 1, titulo: "Teste ES", disponivel: true});
+
+    // Act
+    const saida = ServicoEmprestimo.autorizarEmprestimo(usuario, livro)
+
+    // Assert
+    expect(false).toBe(saida);
+
+    });
+});

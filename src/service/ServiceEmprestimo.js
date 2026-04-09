@@ -1,6 +1,6 @@
 class ServicoEmprestimo {
     static autorizarEmprestimo(usuario) {
-        return this.validarUsuario(usuario)
+        return this.validarUsuario(usuario) && this.validarLivro(livro)
     }
 
      static validarUsuario(usuario) {
@@ -20,7 +20,11 @@ class ServicoEmprestimo {
     }
 
     static validarLivro(livro) {
-        return livro.disponivel;
+        if(!livro.disponivel) {
+            return false;
+        }
+
+        return true;
     }
 }
 
