@@ -1,4 +1,4 @@
 const constants = {
     'USUARIO_LIMITE_EMPRESTIMOS': 3,
-    'USUARIO_MULTA_PENDENTE': 5
+    'USUARIO_LIMITE_MULTA': 5
 }
