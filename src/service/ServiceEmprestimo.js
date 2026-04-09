@@ -2,7 +2,7 @@ const mensagens = require("../util/mensagens");
 const constants = require("../util/constants");
 
 class ServicoEmprestimo {
-    static autorizarEmprestimo(usuario) {
+    static autorizarEmprestimo(usuario, livro) {
         return this.validarUsuario(usuario) && this.validarLivro(livro)
     }
 
@@ -29,6 +29,15 @@ class ServicoEmprestimo {
 
         return true;
     }
+
+
+//    static validarLivro(livro) {
+//        if(!livro.disponivel) {
+//            return false
+//        }
+//        return true;
+//    }
+
 }
 
 module.exports = ServicoEmprestimo;

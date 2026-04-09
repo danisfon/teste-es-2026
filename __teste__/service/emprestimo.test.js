@@ -57,6 +57,8 @@ describe("Emprestimo", ()=> {
     });
 
     test.each(casos)('$descricao', (caso)=>{
+
+        //arrange
         const usuario = new Usuario({
             id: 1, nome: "dani", 
             ativo: caso.ativo, 
@@ -71,9 +73,15 @@ describe("Emprestimo", ()=> {
             disponivel: caso.livroDisponivel
         });
 
-        const saida = ServicoEmprestimo.autorizarEmprestimo(usuario, livro)
-
-        expect(caso.saida).toBe(saida)
+        //assert
+        if(caso.livroDisponivel) {
+            //act
+            const saida = ServicoEmprestimo.autorizarEmprestimo(usuario, livro)
+            expect(caso.saida).toBe(saida)
+        } else {
+            //act/assert
+            expect(()=> ServicoEmprestimo.autorizarEmprestimo(usuario, livro)).toThrow(mensagens.LIVRO_INDISPONIVEL);
+        }
 
     });
 });
