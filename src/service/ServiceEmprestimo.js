@@ -12,7 +12,7 @@ class ServicoEmprestimo {
             return false;
         }
 
-        if(usuario.multaPendente > constants.USUARIO_MULTA_PENDENTE) {
+        if(usuario.multaPendente > constants.USUARIO_LIMITE_MULTA) {
             return false;
         }
         
